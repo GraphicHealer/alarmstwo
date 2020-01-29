@@ -1,0 +1,4 @@
+name = "PluginOne"
+enabled = True
+activate = True
+startup = True
