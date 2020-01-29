@@ -1,4 +1,4 @@
-import os
+
 import logging
 import threading
 import time
@@ -21,6 +21,7 @@ logging.getLogger("").addHandler(console)
 
 def activateAlarm(row):
   print(row[2], ':', row[1])
+  pl.active()
 
 def run():
   logging.info("Thread Run: starting")
@@ -51,5 +52,8 @@ def listAlarms():
   for i in db.getAlarms():
     print("%-3s | %-20s | %-20s" %(i[0],i[1],i[2]))
 
-#x = threading.Thread(target=run)
-#x.start()
+x = threading.Thread(target=run)
+x.start()
+
+y = threading.Thread(target=pl.start)
+y.start()
