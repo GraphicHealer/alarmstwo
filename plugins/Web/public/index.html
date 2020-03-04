@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AlarmPi V2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * {
+        color: black;
+      }
+    </style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+	<script type="text/javascript" src="db.json"></script>
+  </head>
+  <body>
+    <!-- COMMENTS!!! -->
+    <h1>AlarmPi V2 Configuration</h1>
+    <p>Webpage to set and configure alarms for the AlarmPi V2 backend</p>
+	<article>       
+		<h1 style = "color:green;" >   
+			GeeksForGeeks   
+		</h1> 
+		  
+		<button onclick = "constructTable('#table')"> 
+			click here 
+		</button> 
+		  
+		<br><br> 
+		  
+		<table align = "center"
+				id="table" border="1"> 
+		</table> 
+		  
+		<script> 
+			var el_up = document.getElementById("GFG_UP"); 
+			  
+			var list = JSON.parse("db");
+			
+			function constructTable(selector) { 
+				  
+				// Getting the all column names 
+				var cols = Headers(list, selector);   
+	   
+				// Traversing the JSON data 
+				for (var i = 0; i < list.length; i++) { 
+					var row = $('<tr/>');    
+					for (var colIndex = 0; colIndex < cols.length; colIndex++) 
+					{ 
+						var val = list[i][cols[colIndex]]; 
+						  
+						// If there is any key, which is matching 
+						// with the column name 
+						if (val == null) val = "";   
+							row.append($('<td/>').html(val)); 
+					} 
+					  
+					// Adding each row to the table 
+					$(selector).append(row); 
+				} 
+			} 
+			  
+			function Headers(list, selector) { 
+				var columns = []; 
+				var header = $('<tr/>'); 
+				  
+				for (var i = 0; i < list.length; i++) { 
+					var row = list[i]; 
+					  
+					for (var k in row) { 
+						if ($.inArray(k, columns) == -1) { 
+							columns.push(k); 
+							  
+							// Creating the header 
+							header.append($('<th/>').html(k)); 
+						} 
+					} 
+				} 
+				  
+				// Appending the header to the table 
+				$(selector).append(header); 
+					return columns; 
+			}        
+		</script>
+	</article>
+  </body>
+</html>

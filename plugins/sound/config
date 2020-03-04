@@ -1,0 +1,5 @@
+name = "Sound"
+enabled = True
+activate = True
+startup = True
+deactivate = False
